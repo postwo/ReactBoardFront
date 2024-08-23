@@ -7,14 +7,13 @@ import { pseudoRandomBytes } from 'crypto';
 import commentListMock from './mocks/comment-list.mock';
 import favoriteListMock from './mocks/favorite-list.mock';
 import FavoriteItem from './components/FavoriteItem';
+import InputBox from './components/InputBox';
 
 // return 에 <BoardListItem/> 이렇게 넣어야 내가 만든 div들이 출력된다
 function App() {
   return (
     <>
-      <div style={{display: 'flex',  columnGap: '30px' , rowGap: '20px'}}>
-        {favoriteListMock.map(favoriteListItem => <FavoriteItem favoriteListItem={favoriteListItem}/>)}
-      </div>
+      <InputBox />
     </>
   );
 }
