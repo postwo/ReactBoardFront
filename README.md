@@ -28,3 +28,154 @@ views = 뷰(페이지)들 모음
   font-weight: 400;
   font-style: normal;
 }
+
+
+# <div className='icon eye-light-off-icon'> 이거는 클래스 이름이 두개인거다 == .icon  , .eye-light-off-icon  이렇게 두가지이다
+
+
+# Better Comments를 다운받고나서  => 이걸 적용하면 주석처리한거에 색상이 부여된다
+
+1. 톱니바퀴 아이콘 클릭해서 settings에서 들어간다
+2. Extensions를 클릭
+3. Better Comments cofiguration을 들어간다 
+4. tegs -> edit setting in.json을 클릭
+5. 밑에 있는 붙여넣고 vs를 재시작해주면 된다
+
+"better-comments.tags": [
+    
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "#",
+            "color": "#ffffff",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#000000",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "description",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(152, 152, 152, 0.5)",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "component",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(0, 255, 152, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "interface",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(0, 152, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "function",
+            "color": "rgba(255, 255, 255, 1)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(152, 0, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "state",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(152, 255, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "event handler",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(152, 152, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "effect",
+            "color": "rgba(255, 255, 255, 1)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(0, 0, 255, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "render",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(255, 0, 0, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "variable",
+            "color": "rgba(0, 0, 0, 0.7)",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "rgba(0, 255, 0, 0.5)",
+            "bold": true,
+            "italic": false
+        },
+    ],
