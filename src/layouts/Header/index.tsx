@@ -1,11 +1,22 @@
 import React, { ChangeEvent, useRef, useState,KeyboardEvent, useEffect } from 'react'
 import './style.css';
 import { useFetcher, useNavigate, useParams } from 'react-router-dom';
-import { MAIN_PATH, SEARCH_PATH } from '../../constant';
+import { AUTH_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from '../../constant';
+import { useCookies } from 'react-cookie';
+import { useLoginUserStore } from '../../stores';
 
 
 //            component: 헤더 레이아웃         //
 export default function Header() {
+
+//            state: 로그인 유저 상태   //
+const {loginUser,setLoginUser,resetLoginUser} = useLoginUserStore(); 
+
+//            state: cookie 상태     //
+const [cookies, setCookie] = useCookies();  
+
+//            state: 로그인 상태     //
+const [isLogin, setLogin] = useState<boolean>(false);
 
 //            function:네비게이트 함수            //
 const navigate = useNavigate();
@@ -22,10 +33,13 @@ const onLogoClickHandler = () =>{
 const SearchButton = () =>{
   //          state:검색 버튼 요소 참조 상태               //
   const searchButtonRef = useRef<HTMLDivElement | null>(null);
+  
   //          state:검색 버튼 상태               //
   const [status, setStatus] = useState<boolean>(false);
+
   //          state:검색어 상태               //
   const [Word, setWord] = useState<string>('');
+
   //          state:검색어 path variable 상태               //
   // 이거는 app.tsx에서 작성한 {SEARCH_PATH(':searchWord')} 여기에 입력한 파라미터처럼 똑같이 작성해줘야 한다
   const { searchWord } = useParams();
@@ -80,6 +94,44 @@ const SearchButton = () =>{
       </div>
     </div>
   );
+};
+
+//            component: 로그인 또는 마이페이지 버튼 컴포넌트       //
+const MyPageButton = () => {
+
+//            state: userEmail Path variable 상태               //  
+const { userEmail } = useParams();
+  
+//            event handler: 마이페이지 버튼 클릭 이벤트 처리 함수  //  
+const onMypageButtonClickHandler = () => {
+  if(!loginUser) return;
+  const {email} = loginUser;
+  navigate(USER_PATH(email));
+};
+
+//            event handler: 마이페이지 버튼 클릭 이벤트 처리 함수  //  
+const onSignOutButtonClickHandler = () => {
+  resetLoginUser();
+  navigate(MAIN_PATH());
+};
+
+//            event handler: 로그인 버튼 클릭 이벤트 처리 함수  //  
+const onSignInButtonClickHandler = () => {
+  navigate(AUTH_PATH());
+};
+
+//이걸 밑에있는것 보다 먼저 처리해줘야 한다
+//            render: 로그아웃 버튼 렌더링        //
+if(isLogin && userEmail === loginUser?.email)
+return <div className='white-button' onClick={onSignOutButtonClickHandler}>{'로그아웃'}</div>;
+
+if(isLogin)
+//            render: 마이페이지 버튼 렌더링        //
+return <div className='white-button' onClick={onMypageButtonClickHandler}>{'마이페이지'}</div>;
+
+//            render: 로그인 또는 마이페이지 버튼 렌더링        //
+  return <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>;
+
 }
   
 //            render: 헤더 레이아웃 렌더링        //
@@ -94,6 +146,7 @@ const SearchButton = () =>{
         </div>
         <div className='header-right-box'>
           <SearchButton />
+          <MyPageButton />
         </div>
       </div>
     </div>
