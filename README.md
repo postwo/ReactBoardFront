@@ -179,3 +179,11 @@ views = 뷰(페이지)들 모음
             "italic": false
         },
     ],
+
+
+
+# jwt를 사용하면 react쿠키를 주입해야한다
+npm i react-cookie 를 사용해서 주입한다
+
+# 저스탄드 == redux처럼 상태관리 해주는 라이브러리 이다
+npm i zustand
