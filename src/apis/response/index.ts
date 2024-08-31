@@ -1,3 +1,3 @@
-import ResponsDto from "./Response.Dto";
+import ResponsDto from "./response.Dto";
 
 export type {ResponsDto};
