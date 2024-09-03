@@ -219,7 +219,7 @@ useEffect(() => {
           <div className='header-logo'>{'Hoons Board'}</div>
         </div>
         <div className='header-right-box'>
-          {(isUserPage || isMainPage || isSearchPage || isBoardDeatilPage ) && <SearchButton /> }
+          {(isUserPage || isMainPage || isSearchPage || isBoardDeatilPage ||isAuthPage) && <SearchButton /> }
           {(isMainPage || isSearchPage || isBoardDeatilPage || isUserPage) && <MyPageButton />}
           {(isBoardWirtePage || isBoardUpdatePage) &&   <UploadButton />}
         </div>
