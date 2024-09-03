@@ -34,10 +34,17 @@ export default function Authentication() {
     //          state: 에러 상태(이메일 ,패스워드 공통 에러)    //
     const [error, setError] = useState<boolean>(false);
 
+
     //          event handler:  로그인 버튼 클릭 이벤트 처리       //
     const onSignInButtonClickHandler = () =>{
 
     }
+
+    //          event handler:  회원가비 링크 클릭 이벤트 처리       //
+    const onSignUpLinkClickHandler = () => {
+      setView('sign-up');
+    }
+
 
     //          event handler:  패스워드 버튼 클릭 이벤트 처리       //
     const onPasswordButtonClickHandler = () =>{
@@ -71,7 +78,7 @@ export default function Authentication() {
     //          render: sign in card  컴포넌트 렌더링         //
     return (
       <div className='auth-card'>
-        <div className='auth-card-content'>
+        <div className='auth-card-box'>
           <div className='auth-card-top'>
             <div className='auth-card-title-box'>
               <div className='auth-card-title'>{'로그인'}</div>
@@ -80,14 +87,14 @@ export default function Authentication() {
             <InputBox ref={passwordRef} label='패스워드' type={passwordType} placeholder='비밀번호르 입력해주세요' error={error} value={password} setValue={setPassword} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onkeyDown={onPasswordKeyDownHandler}/>
           </div>
           <div className='auth-card-bottom'>
-            <div className='auth-sign-in-error-box'>
+            {error &&  <div className='auth-sign-in-error-box'>
               <div className='auth-signin-error-message'>
-                {'이메일 주소 똔느 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요'}
+                {'이메일 주소 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요'}
                 </div>
-            </div>
+            </div>}
             <div className='black-large-full-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
             <div className='auth-description-box'>
-              <div className='auth-description'>{'신규 사용자이신가요'}<span className='auth-description-link'>{'회원가입'}</span></div>
+              <div className='auth-description'>{'신규 사용자이신가요?'}<span className='auth-description-link' onClick={onSignUpLinkClickHandler}>{'회원가입'}</span></div>
             </div>
           </div>
         </div>
