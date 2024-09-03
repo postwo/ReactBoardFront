@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, KeyboardEvent, useRef } from 'react'
 import './style.css';
+import InputBox from '../../components/InputBox';
 
 
 //          component: 인증 화면  컴포넌트         //
@@ -12,9 +13,85 @@ export default function Authentication() {
   //          component: sign in card  컴포넌트         // 
   const SignInCard = () => {
 
+    //          state: 이메일 요소 참조 상태  == (null);이거는 초기 값 세팅 한거다            //
+    const emailRef = useRef<HTMLInputElement | null> (null);
+
+    //          state: 패스워드 요소 참조 상태             //
+    const passwordRef = useRef<HTMLInputElement | null> (null);
+
+    //          state: 이메일 상태             //
+    const [email , setEmail] = useState<string>('');
+    
+    //          state: 이메일 상태             //
+    const [password, setPassword] = useState<string>('');
+
+    //          state: 이메일 상태             //
+    const [passwordType, setPasswordType] = useState<'text'| 'password'> ('password');
+
+    //          state: 패스워드 버튼 아이콘 상태    //
+    const [passwordButtonIcon, setPasswordButtonIcon] = useState<'eye-light-off-icon' | 'eye-light-on-icon'> ('eye-light-off-icon');
+
+    //          state: 에러 상태(이메일 ,패스워드 공통 에러)    //
+    const [error, setError] = useState<boolean>(false);
+
+    //          event handler:  로그인 버튼 클릭 이벤트 처리       //
+    const onSignInButtonClickHandler = () =>{
+
+    }
+
+    //          event handler:  패스워드 버튼 클릭 이벤트 처리       //
+    const onPasswordButtonClickHandler = () =>{
+
+      console.log(passwordType);// text 상태인지 password 상태인지 확인
+
+      if(passwordType === 'text'){
+        setPasswordType('password');
+        setPasswordButtonIcon('eye-light-off-icon');
+      }
+      else{
+        setPasswordType('text');
+        setPasswordButtonIcon('eye-light-on-icon');
+      }
+    }
+
+
+    //          event handler: 이메일 input 키 다운 이벤트 처리       //
+    const onEmailKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) =>{
+        if(event.key !== 'Enter') return;
+        if(!passwordRef.current) return;
+        passwordRef.current.focus();
+    }
+
+    //          event handler: 패스워드 input 키 다운 이벤트 처리       //
+    const onPasswordKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) =>{
+      if(event.key !== 'Enter') return;
+      onSignInButtonClickHandler();
+    }
+
     //          render: sign in card  컴포넌트 렌더링         //
     return (
-      <div className='auth-card'></div>
+      <div className='auth-card'>
+        <div className='auth-card-content'>
+          <div className='auth-card-top'>
+            <div className='auth-card-title-box'>
+              <div className='auth-card-title'>{'로그인'}</div>
+            </div>
+            <InputBox ref={emailRef} label='이메일 주소' type='text' placeholder='이메일 주소를 입력해주세요' error={error} value={email} setValue={setEmail} onkeyDown={onEmailKeyDownHandler}/>
+            <InputBox ref={passwordRef} label='패스워드' type={passwordType} placeholder='비밀번호르 입력해주세요' error={error} value={password} setValue={setPassword} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onkeyDown={onPasswordKeyDownHandler}/>
+          </div>
+          <div className='auth-card-bottom'>
+            <div className='auth-sign-in-error-box'>
+              <div className='auth-signin-error-message'>
+                {'이메일 주소 똔느 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요'}
+                </div>
+            </div>
+            <div className='black-large-full-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
+            <div className='auth-description-box'>
+              <div className='auth-description'>{'신규 사용자이신가요'}<span className='auth-description-link'>{'회원가입'}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   };
 
