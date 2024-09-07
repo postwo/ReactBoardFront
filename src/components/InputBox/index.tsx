@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch,forwardRef,SetStateAction,KeyboardEvent } from 'react'
+import React, { ChangeEvent, forwardRef,KeyboardEvent } from 'react'
 import './style.css';
 
 //         interface: Input Box 컴포넌트 Propperties          //
@@ -7,7 +7,7 @@ interface Props { //이거는 외부에서 받아오는것들
   type: 'text' | 'password';
   placeholder: string;
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   error: boolean;
 
   // ?는 필수가 아니고 선택이다
@@ -27,13 +27,8 @@ const InputBox = forwardRef<HTMLInputElement,Props>((props: Props,ref) =>{
 
   //         state: properties          //
   const {label,type, placeholder, value ,error,icon,message} = props;
-  const {setValue, onButtonClick, onkeyDown} = props;
+  const {onChange, onButtonClick, onkeyDown} = props;
 
-  //         event handler: input 값 변경 이벤트 처리 함수   //
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) =>{
-    const {value} = event.target;
-    setValue (value);
-  }
 
   //         event handler: input 키 이벤트 처리 함수   //
   const onkeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -49,7 +44,7 @@ const InputBox = forwardRef<HTMLInputElement,Props>((props: Props,ref) =>{
     <div className='inputbox'>
       <div className='inputbox-label'>{label}</div>
       <div className={error ? 'inputbox-container-error' : 'inputbox-container'}>
-        <input ref={ref} type={type} className='input' placeholder={placeholder} value={value} onChange={onChangeHandler} onKeyDown={onkeyDownHandler}/>
+        <input ref={ref} type={type} className='input' placeholder={placeholder} value={value} onChange={onChange} onKeyDown={onkeyDownHandler}/>
         {onButtonClick !== undefined && (
           <div className='icon-button' onClick={onButtonClick}>
             {icon !== undefined && <div className={`icon ${icon}`}></div>}
