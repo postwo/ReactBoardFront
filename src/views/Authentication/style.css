@@ -112,6 +112,13 @@
     line-height: 140%;
 }
 
+.auth-card-page{
+    color: rgba(0, 0, 0, 0.7);
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 140%;
+}
 
 .auth-card-bottom{
     display: flex;
@@ -154,3 +161,4 @@
     cursor: pointer;
     font-weight: 600;
 }
+
