@@ -140,6 +140,7 @@ const onMypageButtonClickHandler = () => {
 //            event handler: 마이페이지 버튼 클릭 이벤트 처리 함수  //  
 const onSignOutButtonClickHandler = () => {
   resetLoginUser();
+  setCookie('accessToken', '', {path: MAIN_PATH(),expires: new Date()})
   navigate(MAIN_PATH());
 };
 
@@ -207,6 +208,10 @@ useEffect(() => {
 
 }, [pathname]);
 
+//            effect: 로그인 하면 버튼을 마이페이지 버튼으로 변경       //
+useEffect(() => {
+  setLogin(loginUser !== null);
+},[loginUser])
   
 //            render: 헤더 레이아웃 렌더링        //
     return (
