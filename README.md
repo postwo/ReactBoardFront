@@ -187,3 +187,25 @@ npm i react-cookie 를 사용해서 주입한다
 
 # 저스탄드 == redux처럼 상태관리 해주는 라이브러리 이다
 npm i zustand
+
+#  npm install axios 
+이거는 백에는 하고 연결 할수 있게 한다
+
+# 위에 npm으로 다운하고나서 
+package.json을 보면 내가 다운한 라이브러리들을 확인할수 있다
+    "axios": "^1.7.7",
+    "react": "^18.3.1",
+    "react-cookie": "^7.2.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+
+#   우편번호 검색 서비스를 임베드 방식
+https://www.npmjs.com/ (npm 사이트 에서 사용방법을 알수 있다)
+
+https://www.npmjs.com/package/react-daum-postcode (npm 사이트 에서 사용방법을 알수 있다)
+ 
+npm i react-daum-postcode (검색 서비스)
+
+
+# 35강 부터 들으면 된다
